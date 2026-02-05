@@ -8,32 +8,6 @@ function getNumBetween(minNum, maxNum) {
   return minNum + Math.floor(Math.random() * (maxNum - minNum + 1));
 }
 
-<<<<<<< HEAD
-function makeRockets(time) {
-  let rockets = [];
-  let xc;
-  let yc;
-  let count = 0;
-  let velocity = 1;
-
-  let timerMakeRockets = setInterval(() => {
-    if (plane.destroyed) {
-      clearInterval(timerMakeRockets);
-      return;
-    }
-    if (count % 5 === 0) {
-      velocity += 1;
-    }
-    xc = getNumBetween(50, coordinateSystem.width - 50);
-    yc = getNumBetween(50, coordinateSystem.height - 50);
-    rockets[count] = new Rocket(xc, yc, count);
-    rockets[count].persecution(velocity);
-    count++;
-  }, time);
-}
-
-=======
->>>>>>> 3001a68 (logic done for the first level)
 document.body.addEventListener("click", (e) => {
   if (plane.destroyed) {
     return;
@@ -51,10 +25,13 @@ document.body.addEventListener("click", (e) => {
 
   if (e.target.classList.contains("rocket")) {
     e.target.destroyed = true;
-    console.log(e.target);
     points++;
-    document.getElementById("points").textContent = `points: ${points}`
     e.target.classList.remove("rocket");
     e.target.remove();
   }
+  shots++;
+  let accuracy = points / shots * 100;
+  document.getElementById("points").textContent = `Влучання: ${points}`;
+  document.getElementById("shots").textContent = `Пострілів: ${shots}`;
+  document.getElementById("accuracy").textContent = `Відсоток влучань: ${accuracy.toFixed(0)}%`;
 })

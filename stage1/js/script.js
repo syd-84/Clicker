@@ -1,6 +1,7 @@
 "use strict";
 
 let points = 0;
+let shots = 0;
 
 let plane = new Plane();
 plane.fly();

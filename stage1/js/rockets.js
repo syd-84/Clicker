@@ -49,8 +49,6 @@ class Rocket {
   }
 }
 
-<<<<<<< HEAD
-=======
 function makeRockets(time) {
   let rockets = [];
   let xc;
@@ -73,4 +71,3 @@ function makeRockets(time) {
     count++;
   }, time);
 }
->>>>>>> 3001a68 (logic done for the first level)
