@@ -24,10 +24,14 @@ document.body.addEventListener("click", (e) => {
   }, 50);
 
   if (e.target.classList.contains("rocket")) {
-    e.target.destroyed = true;
-    points++;
-    e.target.classList.remove("rocket");
-    e.target.remove();
+    let targetXc = rockets[e.target.id].xc;
+    let targetYc = rockets[e.target.id].yc;
+    if (distance(targetXc, targetYc, x2, y2) <= rockets[e.target.id].width / 2) {
+      points++;
+      e.target.classList.remove("rocket");
+      e.target.remove();
+      delete rockets[e.target.id];
+    }
   }
   shots++;
   let accuracy = points / shots * 100;

@@ -18,7 +18,6 @@ class Plane {
   xc = this.plane_box.style.left - this.width / 2;
   yc = this.plane_box.style.top - this.height / 2;
   hp = 100;
-  destroyed = false;
 
   fly() {
     let x0 = coordinateSystem.x0 - this.width / 2;

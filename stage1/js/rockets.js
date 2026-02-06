@@ -5,7 +5,6 @@ class Rocket {
     this.id = `rocket${numId}`;
     this.xc = x;
     this.yc = y;
-    this.destroyed = false;
     let rocket = document.createElement("div");
     rocket.id = `rocket${numId}`;
     rocket.classList.add("rocket");
@@ -23,8 +22,9 @@ class Rocket {
     this.rocketDiv.style.top = this.yc - this.height / 2 + "px";
 
     let timeRocket = setInterval(() => {
-      if (this.clash() || plane.destroyed) {
+      if (this.clash() || plane.destroyed || rockets[this.rocketDiv.id] === undefined) {
         clearInterval(timeRocket);
+        return;
       }
       let angle = Math.atan2(plane.yc - this.yc, plane.xc - this.xc);
       this.rocketDiv.style.transform = `rotate(${angle}rad)`;
@@ -38,19 +38,16 @@ class Rocket {
   }
 
   clash() {
-    if (distance(this.xc, this.yc, plane.xc, plane.yc) <= ((plane.width + this.width) / 2) && this.rocketDiv.classList.contains("rocket")) {
-      if (!this.destroyed) {
-        plane.hp -= 10;
-      }
-      this.destroyed = true;
+    if (distance(this.xc, this.yc, plane.xc, plane.yc) <= ((plane.width + this.width) / 2)) {
+      plane.hp -= 10;
       this.rocketDiv.remove();
+      delete rockets[this.rocketDiv.id];
       return true;
     }
   }
 }
 
 function makeRockets(time) {
-  let rockets = [];
   let xc;
   let yc;
   let count = 0;
@@ -66,8 +63,8 @@ function makeRockets(time) {
     }
     xc = getNumBetween(50, coordinateSystem.width - 50);
     yc = getNumBetween(50, coordinateSystem.height - 50);
-    rockets[count] = new Rocket(xc, yc, count);
-    rockets[count].persecution(velocity);
+    rockets[`rocket${count}`] = new Rocket(xc, yc, count);
+    rockets[`rocket${count}`].persecution(velocity);
     count++;
   }, time);
 }
