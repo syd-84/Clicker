@@ -6,7 +6,7 @@ class Rocket {
     this.xc = x;
     this.yc = y;
     let rocket = document.createElement("div");
-    rocket.id = `rocket${numId}`;
+    rocket.id = this.id;
     rocket.classList.add("rocket");
     rocket.style.left = this.xc + "px";
     rocket.style.top = this.yc + "px";

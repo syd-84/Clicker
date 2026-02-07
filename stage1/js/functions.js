@@ -16,6 +16,7 @@ document.body.addEventListener("click", (e) => {
   let y1 = plane.yc;
   let x2 = e.clientX;
   let y2 = e.clientY;
+  let idTarget = e.target.id;
 
   let laser = new laserRay(x1, y1, x2, y2);
   laser.drawLaserRay();
@@ -24,13 +25,13 @@ document.body.addEventListener("click", (e) => {
   }, 50);
 
   if (e.target.classList.contains("rocket")) {
-    let targetXc = rockets[e.target.id].xc;
-    let targetYc = rockets[e.target.id].yc;
-    if (distance(targetXc, targetYc, x2, y2) <= rockets[e.target.id].width / 2) {
+    let targetXc = rockets[idTarget].xc;
+    let targetYc = rockets[idTarget].yc;
+    if (distance(targetXc, targetYc, x2, y2) <= rockets[idTarget].width / 2) {
       points++;
       e.target.classList.remove("rocket");
       e.target.remove();
-      delete rockets[e.target.id];
+      delete rockets[idTarget];
     }
   }
   shots++;
