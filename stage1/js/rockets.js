@@ -23,6 +23,7 @@ class Rocket {
 
     let timeRocket = setInterval(() => {
       if (this.clash() || plane.destroyed || rockets[this.rocketDiv.id] === undefined) {
+        this.rocketDiv.style.cursor = "default";
         clearInterval(timeRocket);
         return;
       }
@@ -38,7 +39,8 @@ class Rocket {
   }
 
   clash() {
-    if (distance(this.xc, this.yc, plane.xc, plane.yc) <= ((plane.width + this.width) / 2)) {
+    if (distance(this.xc, this.yc, plane.xc, plane.yc) < ((plane.width + this.width) / 2)) {
+      destroyedEvent("clash", this.xc, this.yc)
       plane.hp -= 10;
       this.rocketDiv.remove();
       delete rockets[this.rocketDiv.id];

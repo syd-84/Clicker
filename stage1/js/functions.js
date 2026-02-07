@@ -31,6 +31,7 @@ document.body.addEventListener("click", (e) => {
       points++;
       e.target.classList.remove("rocket");
       e.target.remove();
+      destroyedEvent("bang", x2, y2)
       delete rockets[idTarget];
     }
   }
@@ -39,4 +40,25 @@ document.body.addEventListener("click", (e) => {
   document.getElementById("points").textContent = `Влучання: ${points}`;
   document.getElementById("shots").textContent = `Пострілів: ${shots}`;
   document.getElementById("accuracy").textContent = `Відсоток влучань: ${accuracy.toFixed(0)}%`;
-})
+});
+
+document.body.addEventListener("mousemove", (e) => {
+  if (e.target.classList[0] === "rocket") {
+    let idTarget = e.target.id;
+    let xc = rockets[idTarget].xc;
+    let yc = rockets[idTarget].yc;
+    let xMouse = e.clientX;
+    let yMouse = e.clientY;
+    if (distance(xc, yc, xMouse, yMouse) < rockets[idTarget].width) {
+      e.target.classList.add("cursorRocket");
+    }
+  }
+});
+
+function destroyedEvent(event, x, y) {
+  let element = document.createElement(event);
+  element.classList.add(event);
+  document.body.append(element);
+  element.style.left = (x - element.clientWidth / 2) + "px";
+  element.style.top = (y - element.clientHeight / 2) + "px";
+}

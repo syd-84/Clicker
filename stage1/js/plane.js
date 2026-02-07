@@ -54,6 +54,8 @@ class Plane {
     if (this.hp <= 0) {
       this.destroyed = true;
       plane_box.remove();
+      destroyedEvent("boom", this.xc, this.yc)
+      document.body.style.cursor = "default";
       return true;
     }
   }
