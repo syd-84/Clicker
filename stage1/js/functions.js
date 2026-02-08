@@ -9,45 +9,47 @@ function getNumBetween(minNum, maxNum) {
 }
 
 document.body.addEventListener("click", (e) => {
-  if (plane.destroyed) {
-    return;
-  }
-  let x1 = plane.xc;
-  let y1 = plane.yc;
-  let x2 = e.clientX;
-  let y2 = e.clientY;
-  let idTarget = e.target.id;
-
-  let laser = new laserRay(x1, y1, x2, y2);
-  laser.drawLaserRay();
-
-  let audio = new Audio('./audio/laser.wav');
-  audio.volume = 0.4;
-  audio.play();
-
-  setTimeout(() => {
-    document.getElementById("ray").remove();
-  }, 50);
-
-  if (e.target.classList.contains("rocket")) {
-    let targetXc = rockets[idTarget].xc;
-    let targetYc = rockets[idTarget].yc;
-    if (distance(targetXc, targetYc, x2, y2) <= rockets[idTarget].width / 2) {
-      points++;
-      e.target.classList.remove("rocket");
-      e.target.remove();
-      destroyedEvent("bang", x2, y2);
-      let audio = new Audio('./audio/bang.wav');
-      audio.volume = 0.5;
-      audio.play();
-      delete rockets[idTarget];
+  if (plane !== undefined) {
+    if (plane.destroyed) {
+      return;
     }
+    let x1 = plane.xc;
+    let y1 = plane.yc;
+    let x2 = e.clientX;
+    let y2 = e.clientY;
+    let idTarget = e.target.id;
+
+    let laser = new laserRay(x1, y1, x2, y2);
+    laser.drawLaserRay();
+
+    let audio = new Audio('./audio/laser.wav');
+    audio.volume = 0.4;
+    audio.play();
+
+    setTimeout(() => {
+      document.getElementById("ray").remove();
+    }, 50);
+
+    if (e.target.classList.contains("rocket")) {
+      let targetXc = rockets[idTarget].xc;
+      let targetYc = rockets[idTarget].yc;
+      if (distance(targetXc, targetYc, x2, y2) <= rockets[idTarget].width / 2) {
+        points++;
+        e.target.classList.remove("rocket");
+        e.target.remove();
+        destroyedEvent("bang", x2, y2);
+        let audio = new Audio('./audio/bang.wav');
+        audio.volume = 0.5;
+        audio.play();
+        delete rockets[idTarget];
+      }
+    }
+    shots++;
+    let accuracy = points / shots * 100;
+    document.getElementById("points").textContent = `Влучання: ${points}`;
+    document.getElementById("shots").textContent = `Пострілів: ${shots}`;
+    document.getElementById("accuracy").textContent = `Відсоток влучань: ${accuracy.toFixed(0)}%`;
   }
-  shots++;
-  let accuracy = points / shots * 100;
-  document.getElementById("points").textContent = `Влучання: ${points}`;
-  document.getElementById("shots").textContent = `Пострілів: ${shots}`;
-  document.getElementById("accuracy").textContent = `Відсоток влучань: ${accuracy.toFixed(0)}%`;
 });
 
 document.body.addEventListener("mousemove", (e) => {

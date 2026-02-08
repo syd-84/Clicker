@@ -15,8 +15,9 @@ class Plane {
   plane = document.getElementById("plane");
   width = plane_box.clientWidth;
   height = plane_box.clientHeight;
-  xc = this.plane_box.style.left - this.width / 2;
-  yc = this.plane_box.style.top - this.height / 2;
+  destroyed = false;
+  xc = 0;
+  yc = 0;
   hp = 100;
 
   fly() {
