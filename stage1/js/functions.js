@@ -20,6 +20,11 @@ document.body.addEventListener("click", (e) => {
 
   let laser = new laserRay(x1, y1, x2, y2);
   laser.drawLaserRay();
+
+  let audio = new Audio('./audio/laser.wav');
+  audio.volume = 0.4;
+  audio.play();
+
   setTimeout(() => {
     document.getElementById("ray").remove();
   }, 50);
@@ -31,7 +36,10 @@ document.body.addEventListener("click", (e) => {
       points++;
       e.target.classList.remove("rocket");
       e.target.remove();
-      destroyedEvent("bang", x2, y2)
+      destroyedEvent("bang", x2, y2);
+      let audio = new Audio('./audio/bang.wav');
+      audio.volume = 0.5;
+      audio.play();
       delete rockets[idTarget];
     }
   }
@@ -61,4 +69,8 @@ function destroyedEvent(event, x, y) {
   document.body.append(element);
   element.style.left = (x - element.clientWidth / 2) + "px";
   element.style.top = (y - element.clientHeight / 2) + "px";
+  setTimeout(() => {
+    element.remove();
+  }, 2000);
+  return;
 }

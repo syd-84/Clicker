@@ -54,8 +54,14 @@ class Plane {
     if (this.hp <= 0) {
       this.destroyed = true;
       plane_box.remove();
-      destroyedEvent("boom", this.xc, this.yc)
+      destroyedEvent("boom", this.xc, this.yc);
       document.body.style.cursor = "default";
+      let audio = new Audio('./audio/crash.wav');
+      audio.volume = 0.3;
+      audio.play();
+      setTimeout(() => {
+        bgMusic.pause()
+      }, 2000)
       return true;
     }
   }

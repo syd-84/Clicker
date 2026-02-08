@@ -44,6 +44,9 @@ class Rocket {
       plane.hp -= 10;
       this.rocketDiv.remove();
       delete rockets[this.rocketDiv.id];
+      let audio = new Audio('./audio/clash.wav');
+      audio.volume = 0.2;
+      audio.play();
       return true;
     }
   }
