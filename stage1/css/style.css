@@ -45,7 +45,6 @@ body {
 #plane {
   width: 100px;
   height: 100px;
-  margin-top: 5px;
   border-radius: 50%;
   background-size: contain;
   background-repeat: no-repeat;
@@ -73,12 +72,14 @@ body {
 }
 
 #hp_bg {
+  width: 100%;
   background-color: green;
   border-radius: 3px;
+  position: absolute;
+  top: -15px;
 }
 
 #hp_line {
-  width: 100%;
   height: 5px;
   border-radius: 3px;
   background-color: red;

@@ -33,6 +33,7 @@ function countdown(numSeconds) {
       clearInterval(idInterval);
       countDown.textContent = "GO";
       let letsGo = new Audio("./audio/letsGo.mp3");
+      letsGo.volume = 0.5;
       letsGo.play();
       setTimeout(() => {
         countDown.remove();
@@ -66,3 +67,4 @@ document.body.addEventListener("click", (e) => {
     }, 1000);
   }
 })
+
