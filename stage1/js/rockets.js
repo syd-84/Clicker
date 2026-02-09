@@ -2,7 +2,7 @@
 
 class Rocket {
   constructor(x, y, numId, target) {
-    let size = 0.75 * target.width;
+    let size = 0.1 * Math.min(coordinateSystem.width, coordinateSystem.height);
     this.id = `rocket${numId}`;
     this.xc = x;
     this.yc = y;

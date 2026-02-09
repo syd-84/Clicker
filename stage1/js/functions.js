@@ -46,9 +46,9 @@ document.body.addEventListener("click", (e) => {
     }
     shots++;
     let accuracy = points / shots * 100;
-    document.getElementById("points").textContent = `Влучання: ${points}`;
-    document.getElementById("shots").textContent = `Пострілів: ${shots}`;
-    document.getElementById("accuracy").textContent = `Відсоток влучань: ${accuracy.toFixed(0)}%`;
+    document.getElementById("points").textContent = `Hits: ${points}`;
+    document.getElementById("shots").textContent = `Shots: ${shots}`;
+    document.getElementById("accuracy").textContent = `Hit percentage: ${accuracy.toFixed(0)}%`;
   }
 });
 
@@ -110,3 +110,22 @@ function countdown(numSeconds) {
     };
   }, 1000);
 };
+
+function gameOver() {
+  setTimeout(() => {
+    let gameOver = document.createElement("div");
+    gameOver.classList.add("gameOver");
+    let audio = new Audio('./audio/gameOver.mp3');
+    audio.play();
+    document.body.append(gameOver);
+    showStatistic();
+    return true;
+  }, 3000);
+}
+
+function showStatistic() {
+  setTimeout(() => {
+    statistic.id = "statisticEndGame";
+    statisticEndGame.style.display = "block";
+  }, 5000);
+}

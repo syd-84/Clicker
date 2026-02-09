@@ -2,11 +2,9 @@
 
 let points = 0;
 let shots = 0;
-let plane;
+let plane = new Plane();
 let rockets = {};
 let startGame = false;
-
-plane = new Plane();
 
 let bgMusic = new Audio('./audio/background_music.opus');
 bgMusic.volume = 0.3;
@@ -34,5 +32,11 @@ document.body.addEventListener("click", (e) => {
       }
     }, 1000);
   }
-})
+});
 
+let waitingEndGame = setInterval(() => {
+  if (plane.destroyed) {
+    clearInterval(waitingEndGame);
+    gameOver();
+  }
+}, 40);

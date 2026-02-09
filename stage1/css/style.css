@@ -29,6 +29,7 @@ body {
   top: calc(50% - 100px);
   left: calc(50% - 100px);
   transition: 0.5s;
+  opacity: 0.9;
 }
 
 .start_btn:hover {
@@ -101,7 +102,6 @@ body {
 
 #statistic {
   padding: 20px;
-  display: flex;
   justify-content: center;
   gap: 30px;
 }
@@ -117,6 +117,18 @@ body {
   font-family: sans-serif;
   font-size: 20px;
   color: yellow;
+}
+
+#statisticEndGame {
+  width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  justify-content: center;
+  gap: 30px;
+}
+
+#statisticEndGame div {
+  margin: 10px;
 }
 
 .bang,
@@ -159,5 +171,36 @@ body {
 
   100% {
     scale: 0;
+  }
+}
+
+.gameOver {
+  width: 50vw;
+  height: 50vh;
+  position: absolute;
+  top: calc(50% - 25vh);
+  left: calc(50% - 25vw);
+  background-image: url(../images/gameOver.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: gameOver 5s linear forwards;
+}
+
+@keyframes gameOver {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
   }
 }
