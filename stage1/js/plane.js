@@ -60,6 +60,24 @@ class Plane {
       let audio = new Audio('./audio/crash.wav');
       audio.volume = 0.3;
       audio.play();
+
+      let count = 0;
+      for (const key in rockets) {
+        count++;
+        setTimeout(() => {
+          let element = document.getElementById(rockets[key].id);
+          element.style.transform = "rotate(0deg)";
+          element.classList.add("bang");
+          let audio = new Audio('./audio/bang.wav');
+          audio.volume = 0.3;
+          audio.play();
+          setTimeout(() => {
+            delete rockets[key];
+            element.remove();
+          }, 1000);
+        }, count * 300);
+      }
+
       setTimeout(() => {
         bgMusic.pause()
       }, 2000)

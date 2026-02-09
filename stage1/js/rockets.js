@@ -27,7 +27,6 @@ class Rocket {
         clearInterval(timeRocket);
         return;
       }
-      // console.log(plane)
       let angle = Math.atan2(plane.yc - this.yc, plane.xc - this.xc);
       this.rocketDiv.style.transform = `rotate(${angle}rad)`;
       let dx = velocity * Math.cos(angle);
