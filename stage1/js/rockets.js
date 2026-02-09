@@ -1,10 +1,11 @@
 "use strict";
 
 class Rocket {
-  constructor(x, y, numId) {
+  constructor(x, y, numId, target) {
     this.id = `rocket${numId}`;
     this.xc = x;
     this.yc = y;
+    this.target = target;
     let rocket = document.createElement("div");
     rocket.id = this.id;
     rocket.classList.add("rocket");
@@ -17,17 +18,17 @@ class Rocket {
     this.height = this.rocketDiv.clientHeight;
   }
 
-  persecution(target, velocity = 1) {
+  persecution(velocity = 1) {
     this.rocketDiv.style.left = this.xc - this.width / 2 + "px";
     this.rocketDiv.style.top = this.yc - this.height / 2 + "px";
 
     let timeRocket = setInterval(() => {
-      if (this.clash() || target.destroyed || rockets[this.rocketDiv.id] === undefined) {
+      if (this.clash() || this.target.destroyed || rockets[this.rocketDiv.id] === undefined) {
         this.rocketDiv.style.cursor = "default";
         clearInterval(timeRocket);
         return;
       }
-      let angle = Math.atan2(target.yc - this.yc, target.xc - this.xc);
+      let angle = Math.atan2(this.target.yc - this.yc, this.target.xc - this.xc);
       this.rocketDiv.style.transform = `rotate(${angle}rad)`;
       let dx = velocity * Math.cos(angle);
       let dy = velocity * Math.sin(angle);
@@ -39,9 +40,9 @@ class Rocket {
   }
 
   clash() {
-    if (distance(this.xc, this.yc, plane.xc, plane.yc) < ((plane.width + this.width) / 2)) {
+    if (distance(this.xc, this.yc, this.target.xc, this.target.yc) < ((this.target.width + this.width) / 2)) {
       destroyedEvent("clash", this.xc, this.yc)
-      plane.hp -= 10;
+      this.target.hp -= 10;
       this.rocketDiv.remove();
       delete rockets[this.rocketDiv.id];
       let audio = new Audio('./audio/clash.wav');
@@ -52,14 +53,14 @@ class Rocket {
   }
 }
 
-function makeRockets(time) {
+function makeRockets(target, time) {
   let xc;
   let yc;
   let count = 0;
   let velocity = 1;
 
   let timerMakeRockets = setInterval(() => {
-    if (plane.destroyed) {
+    if (target.destroyed) {
       clearInterval(timerMakeRockets);
       return;
     }
@@ -68,8 +69,8 @@ function makeRockets(time) {
     }
     xc = getNumBetween(50, coordinateSystem.width - 50);
     yc = getNumBetween(50, coordinateSystem.height - 50);
-    rockets[`rocket${count}`] = new Rocket(xc, yc, count);
-    rockets[`rocket${count}`].persecution(plane, velocity);
+    rockets[`rocket${count}`] = new Rocket(xc, yc, count, target);
+    rockets[`rocket${count}`].persecution(velocity);
     count++;
   }, time);
 }

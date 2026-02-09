@@ -61,7 +61,7 @@ document.body.addEventListener("click", (e) => {
         bgMusic.play();
         plane = new Plane();
         plane.fly();
-        makeRockets(1000);
+        makeRockets(plane, 1000);
       }
     }, 1000);
   }
