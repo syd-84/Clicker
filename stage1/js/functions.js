@@ -19,16 +19,16 @@ document.body.addEventListener("click", (e) => {
     let y2 = e.clientY;
     let idTarget = e.target.id;
 
-    let laser = new laserRay(x1, y1, x2, y2);
-    laser.drawLaserRay();
-
-    let audio = new Audio('./audio/laser.wav');
-    audio.volume = 0.4;
-    audio.play();
-
-    setTimeout(() => {
-      document.getElementById("ray").remove();
-    }, 50);
+    if (plane.canShoot) {
+      let laser = new laserRay(x1, y1, x2, y2);
+      laser.drawLaserRay();
+      let audio = new Audio('./audio/laser.wav');
+      audio.volume = 0.4;
+      audio.play();
+      setTimeout(() => {
+        document.getElementById("ray").remove();
+      }, 50);
+    }
 
     if (e.target.classList.contains("rocket")) {
       let targetXc = rockets[idTarget].xc;
@@ -76,3 +76,37 @@ function destroyedEvent(event, x, y) {
   }, 2000);
   return;
 }
+
+function countVoice(num) {
+  let audio = new Audio("./audio/count.mp3");
+  audio.currentTime = num - 1;
+  audio.play();
+  setTimeout(() => {
+    audio.pause();
+  }, 900)
+}
+
+function countdown(numSeconds) {
+  let countDown = document.getElementById("count_down")
+  let count = numSeconds;
+  countDown.textContent = count;
+  countVoice(count);
+  let idInterval = setInterval(() => {
+    count--;
+    if (count === 0) {
+      clearInterval(idInterval);
+      countDown.textContent = "GO";
+      let letsGo = new Audio("./audio/letsGo.mp3");
+      letsGo.volume = 0.5;
+      letsGo.play();
+      setTimeout(() => {
+        countDown.remove();
+        startGame = true;
+        return;
+      }, 1000);
+    } else {
+      countDown.textContent = count;
+      countVoice(count);
+    };
+  }, 1000);
+};

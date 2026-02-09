@@ -2,6 +2,7 @@
 
 class Rocket {
   constructor(x, y, numId, target) {
+    let size = 0.75 * target.width;
     this.id = `rocket${numId}`;
     this.xc = x;
     this.yc = y;
@@ -9,13 +10,15 @@ class Rocket {
     let rocket = document.createElement("div");
     rocket.id = this.id;
     rocket.classList.add("rocket");
+    rocket.style.width = size + "px";
+    rocket.style.height = size + "px";
     rocket.style.left = this.xc + "px";
     rocket.style.top = this.yc + "px";
     document.body.append(rocket);
 
     this.rocketDiv = document.getElementById(this.id);
-    this.width = this.rocketDiv.clientWidth;
-    this.height = this.rocketDiv.clientHeight;
+    this.width = size;
+    this.height = size;
   }
 
   persecution(velocity = 1) {

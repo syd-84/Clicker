@@ -11,14 +11,37 @@ let coordinateSystem = new CoordinateSystem();
 
 class Plane {
 
-  plane_box = document.getElementById("plane_box");
-  plane = document.getElementById("plane");
-  width = plane_box.clientWidth;
-  height = plane_box.clientHeight;
-  destroyed = false;
-  xc = 0;
-  yc = 0;
-  hp = 100;
+  constructor() {
+    let size = 0.15 * Math.min(coordinateSystem.width, coordinateSystem.height);
+
+    let plane_box = document.createElement("div");
+    plane_box.id = "plane_box";
+
+    let hp_bg = document.createElement("div");
+    hp_bg.id = "hp_bg";
+
+    let hp_line = document.createElement("div");
+    hp_line.id = "hp_line";
+
+    let plane = document.createElement("div");
+    plane.id = "plane";
+    plane.style.width = size + "px";
+    plane.style.height = size + "px";
+    plane_box.append(hp_bg);
+    hp_bg.append(hp_line);
+    plane_box.append(plane);
+    document.body.append(plane_box);
+
+    this.plane_box = plane_box;
+    this.plane = plane;
+    this.width = size;
+    this.height = size;
+    this.destroyed = false;
+    this.canShoot = false;
+    this.xc = 0;
+    this.yc = 0;
+    this.hp = 100;
+  }
 
   fly() {
     let x0 = coordinateSystem.x0 - this.width / 2;
