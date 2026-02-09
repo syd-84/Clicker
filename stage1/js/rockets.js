@@ -17,17 +17,17 @@ class Rocket {
     this.height = this.rocketDiv.clientHeight;
   }
 
-  persecution(velocity = 1) {
+  persecution(target, velocity = 1) {
     this.rocketDiv.style.left = this.xc - this.width / 2 + "px";
     this.rocketDiv.style.top = this.yc - this.height / 2 + "px";
 
     let timeRocket = setInterval(() => {
-      if (this.clash() || plane.destroyed || rockets[this.rocketDiv.id] === undefined) {
+      if (this.clash() || target.destroyed || rockets[this.rocketDiv.id] === undefined) {
         this.rocketDiv.style.cursor = "default";
         clearInterval(timeRocket);
         return;
       }
-      let angle = Math.atan2(plane.yc - this.yc, plane.xc - this.xc);
+      let angle = Math.atan2(target.yc - this.yc, target.xc - this.xc);
       this.rocketDiv.style.transform = `rotate(${angle}rad)`;
       let dx = velocity * Math.cos(angle);
       let dy = velocity * Math.sin(angle);
@@ -69,7 +69,7 @@ function makeRockets(time) {
     xc = getNumBetween(50, coordinateSystem.width - 50);
     yc = getNumBetween(50, coordinateSystem.height - 50);
     rockets[`rocket${count}`] = new Rocket(xc, yc, count);
-    rockets[`rocket${count}`].persecution(velocity);
+    rockets[`rocket${count}`].persecution(plane, velocity);
     count++;
   }, time);
 }
