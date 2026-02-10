@@ -14,7 +14,7 @@ body {
   transition: 5s;
   background-image: url("../gifs/14-22-36-485_512.webp");
   font-family: fantasy;
-  height: 150px;
+  height: 200px;
   width: 400px;
 }
 
@@ -22,8 +22,8 @@ body {
   justify-content: center;
   align-items: center;
   width: 350px;
-  height: 200px;
   display: flex;
+  flex-wrap: wrap;
 }
 
 button {

@@ -1,11 +1,9 @@
 const myAudio = document.getElementById("ad");
-const audioPlay = document.getElementById("play1");
+let audiosPlay = [];
 const audioPlay2 = document.getElementById("play2");
 const click = document.getElementById("click");
 
-const btn = document.getElementById("play");
-const btn2 = document.getElementById("exit");
-const btns = document.getElementById("btns");
+const btnsTag = document.getElementsByTagName("BUTTON");
 btns.tabIndex = 0;
 
 document.getElementById("welcome").addEventListener(
@@ -20,22 +18,15 @@ document.getElementById("welcome").addEventListener(
   { once: true },
 );
 
-btn.addEventListener("mouseover", () => {
-  audioPlay.play();
-});
-btn2.addEventListener("mouseover", () => {
-  audioPlay.play();
-});
-
-btn.addEventListener("click", () => {
-  click.play();
-  setTimeout(() => {
-    window.location.href = 'index2.html'
-  }, 1000)
-});
-btn2.addEventListener("click", () => {
-  click.play();
-});
+for (let i = 0; i < btnsTag.length; i++) {
+  audiosPlay.push(new Audio("./audio/47313572-ui-sounds-pack-3-16-359726.mp3"));
+  btnsTag[i].addEventListener("mouseover", () => {
+    audiosPlay[i].play();
+  });
+  btnsTag[i].addEventListener("click", () => {
+    click.play();
+  });
+}
 
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
