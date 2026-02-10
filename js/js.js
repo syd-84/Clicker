@@ -28,6 +28,12 @@ for (let i = 0; i < btnsTag.length; i++) {
   });
 }
 
+btnsTag[0].addEventListener("click", () => {
+  setTimeout(() => {
+    window.location.href = 'index2.html'
+  }, 500)
+});
+
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     this.body.style.display = "none";
