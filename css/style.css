@@ -9,20 +9,23 @@ body {
   align-items: center;
   overflow: hidden;
 }
+
 .styles {
   transition: 5s;
-  background-image: url("gifs/14-22-36-485_512.webp");
+  background-image: url("../gifs/14-22-36-485_512.webp");
   font-family: fantasy;
   height: 150px;
   width: 400px;
 }
-.btns {
+
+#btns {
   justify-content: center;
   align-items: center;
   width: 350px;
   height: 200px;
   display: flex;
 }
+
 button {
   border-radius: 25px;
   font-size: 20px;
@@ -33,4 +36,10 @@ button {
 button:hover {
   background-color: rgb(11, 34, 82);
   color: white;
+}
+
+.welcome {
+  color: white;
+  font-family: fantasy;
+  cursor: pointer;
 }

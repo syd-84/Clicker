@@ -8,13 +8,14 @@ const btn2 = document.getElementById("exit");
 const btns = document.getElementById("btns");
 btns.tabIndex = 0;
 
-document.body.addEventListener(
-  "keydown",
+document.getElementById("welcome").addEventListener(
+  "click",
   function (e) {
-    if (e.key === "Enter") {
-      myAudio.play();
-      this.classList.add("styles");
-    }
+    myAudio.play();
+    document.body.classList.add("styles");
+    e.target.textContent = "WELCOME TO OUR NEW GAME";
+    e.target.style.cursor = "auto";
+    btns.style.display = "";
   },
   { once: true },
 );
@@ -28,6 +29,9 @@ btn2.addEventListener("mouseover", () => {
 
 btn.addEventListener("click", () => {
   click.play();
+  setTimeout(() => {
+    window.location.href = 'index2.html'
+  }, 1000)
 });
 btn2.addEventListener("click", () => {
   click.play();
