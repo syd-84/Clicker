@@ -8,7 +8,7 @@ let startGame = false;
 
 let bgMusic = new Audio('./audio/background_music.opus');
 bgMusic.volume = 0.3;
-bgMusic.loop;
+bgMusic.loop = true;
 
 plane_box.style.opacity = 0;
 statistic.style.display = "none";
