@@ -1,0 +1,54 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-image: url(../images/Sky-Stars-Pattern.jpg);
+  background-size: contain;
+  cursor: url(../images/cursor1.png) 15 15, default;
+}
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+#cockpit {
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/cockpit.png);
+  background-size: 100% 100%;
+  z-index: 5;
+  position: absolute;
+  pointer-events: none;
+}
+
+#gun_left,
+#gun_right {
+  width: 25%;
+  height: 30%;
+  background-image: url(../images/gun.png);
+  background-size: 100% 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+#gun_left {
+  left: 0;
+}
+
+#gun_right {
+  right: 0;
+  transform: scalex(-1);
+}
+
+#ray {
+  height: 3px;
+  background-color: gold;
+  position: fixed;
+}
