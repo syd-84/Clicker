@@ -125,7 +125,59 @@ function gameOver() {
 
 function showStatistic() {
   setTimeout(() => {
+    document.getElementsByClassName("gameOver")[0].remove();
     statistic.id = "statisticEndGame";
     statisticEndGame.style.display = "block";
+
+    if (localStorage.getItem("clickerStage1")) {
+      let lastRes = localStorage.getItem("clickerStage1").split("|");
+      let lastPoint = document.createElement("div")
+      lastPoint.textContent = `Last Points: ${lastRes[0]}`;
+      statisticEndGame.append(lastPoint);
+      let lastShots = document.createElement("div")
+      lastShots.textContent = `Last Shots: ${lastRes[1]}`;
+      statisticEndGame.append(lastShots);
+    }
+
+    let menuEndGame = document.createElement("div");
+    menuEndGame.id = "buttons";
+    menuEndGame.innerHTML = `
+    <button>Play again</button>
+    <button>Back to main menu</button>`
+    document.body.append(menuEndGame);
+    menuEndGameEffects();
+
+    let resTolocalStorage = `${points}|${shots}`;
+    localStorage.setItem("clickerStage1", resTolocalStorage);
   }, 5000);
 }
+
+function menuEndGameEffects() {
+  let buttonsEndGame = document.getElementById("buttons").children;
+  let audiosPlay = [];
+  let click = new Audio("./audio/freesound_crunchpixstudio-click-2-384920.mp3")
+
+  for (let i = 0; i < buttonsEndGame.length; i++) {
+    audiosPlay.push(new Audio("./audio/47313572-ui-sounds-pack-3-16-359726.mp3"));
+    buttonsEndGame[i].addEventListener("mouseover", () => {
+      audiosPlay[i].play();
+    });
+    buttonsEndGame[i].addEventListener("click", () => {
+      click.play();
+    });
+  }
+
+  document.getElementById("buttons").children[0].addEventListener("click", () => {
+    setTimeout(() => {
+      window.location.href = './stage_1.html'
+    }, 500)
+  })
+
+  document.getElementById("buttons").children[1].addEventListener("click", () => {
+    setTimeout(() => {
+      window.location.href = '../index.html'
+    }, 500)
+  })
+
+}
+
