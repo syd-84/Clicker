@@ -22,7 +22,7 @@ document.body.addEventListener("click", (e) => {
     if (plane.canShoot) {
       let laser = new laserRay(x1, y1, x2, y2);
       laser.drawLaserRay();
-      let audio = new Audio('./audio/laser.wav');
+      let audio = new Audio('./../audio/laser.wav');
       audio.volume = 0.4;
       audio.play();
       setTimeout(() => {
@@ -38,7 +38,7 @@ document.body.addEventListener("click", (e) => {
         e.target.classList.remove("rocket");
         e.target.remove();
         destroyedEvent("bang", x2, y2);
-        let audio = new Audio('./audio/bang.wav');
+        let audio = new Audio('./../audio/bang.wav');
         audio.volume = 0.5;
         audio.play();
         delete rockets[idTarget];
@@ -78,7 +78,7 @@ function destroyedEvent(event, x, y) {
 }
 
 function countVoice(num) {
-  let audio = new Audio("./audio/count.mp3");
+  let audio = new Audio("./../audio/count.mp3");
   audio.currentTime = num - 1;
   audio.play();
   setTimeout(() => {
@@ -96,7 +96,7 @@ function countdown(numSeconds) {
     if (count === 0) {
       clearInterval(idInterval);
       countDown.textContent = "GO";
-      let letsGo = new Audio("./audio/letsGo.mp3");
+      let letsGo = new Audio("./../audio/letsGo.mp3");
       letsGo.volume = 0.5;
       letsGo.play();
       setTimeout(() => {
@@ -115,7 +115,7 @@ function gameOver() {
   setTimeout(() => {
     let gameOver = document.createElement("div");
     gameOver.classList.add("gameOver");
-    let audio = new Audio('./audio/gameOver.mp3');
+    let audio = new Audio('./../audio/gameOver.mp3');
     audio.play();
     document.body.append(gameOver);
     showStatistic();
@@ -155,10 +155,10 @@ function showStatistic() {
 function menuEndGameEffects() {
   let buttonsEndGame = document.getElementById("buttons").children;
   let audiosPlay = [];
-  let click = new Audio("./audio/freesound_crunchpixstudio-click-2-384920.mp3")
+  let click = new Audio("./../audio/freesound_crunchpixstudio-click-2-384920.mp3")
 
   for (let i = 0; i < buttonsEndGame.length; i++) {
-    audiosPlay.push(new Audio("./audio/47313572-ui-sounds-pack-3-16-359726.mp3"));
+    audiosPlay.push(new Audio("./../audio/47313572-ui-sounds-pack-3-16-359726.mp3"));
     buttonsEndGame[i].addEventListener("mouseover", () => {
       audiosPlay[i].play();
     });

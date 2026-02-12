@@ -80,7 +80,7 @@ class Plane {
       plane_box.remove();
       destroyedEvent("boom", this.xc, this.yc);
       document.body.style.cursor = "default";
-      let audio = new Audio('./audio/crash.wav');
+      let audio = new Audio('./../audio/crash.wav');
       audio.volume = 0.3;
       audio.play();
 
@@ -91,7 +91,7 @@ class Plane {
           let element = document.getElementById(rockets[key].id);
           element.style.transform = "rotate(0deg)";
           element.classList.add("bang");
-          let audio = new Audio('./audio/bang.wav');
+          let audio = new Audio('./../audio/bang.wav');
           audio.volume = 0.3;
           audio.play();
           setTimeout(() => {

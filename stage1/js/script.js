@@ -6,7 +6,7 @@ let plane = new Plane();
 let rockets = {};
 let startGame = false;
 
-let bgMusic = new Audio('./audio/background_music.opus');
+let bgMusic = new Audio('./../audio/background_music.opus');
 bgMusic.volume = 0.3;
 bgMusic.loop = true;
 
