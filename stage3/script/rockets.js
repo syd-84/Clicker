@@ -71,7 +71,7 @@ function makeRockets(time) {
       return;
     }
     if (count % 5 === 0) {
-      velocity += 0.5;
+      velocity += 1;
     }
     xc = getNumBetween(50, coordinateSystem.width - 50);
     yc = getNumBetween(50, coordinateSystem.height - 50);

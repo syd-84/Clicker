@@ -28,16 +28,18 @@ class LaserRay {
 }
 
 document.body.addEventListener("click", (e) => {
-  let xMouse = e.clientX;
-  let yMouse = e.clientY;
+  if (canShot) {
+    let xMouse = e.clientX;
+    let yMouse = e.clientY;
 
-  if (leftShot) {
-    let laserLeft = new LaserRay(xGunLeft, yGunLeft, xMouse, yMouse);
-    laserLeft.drawLaserRay();
-  } else {
-    let laserRight = new LaserRay(xGunRight, yGunRight, xMouse, yMouse);
-    laserRight.drawLaserRay();
+    if (leftShot) {
+      let laserLeft = new LaserRay(xGunLeft, yGunLeft, xMouse, yMouse);
+      laserLeft.drawLaserRay();
+    } else {
+      let laserRight = new LaserRay(xGunRight, yGunRight, xMouse, yMouse);
+      laserRight.drawLaserRay();
+    }
+
+    leftShot = !leftShot;
   }
-
-  leftShot = !leftShot;
 })

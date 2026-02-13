@@ -62,3 +62,109 @@ function destroyedEvent(event, x, y) {
   }, 2000);
   return;
 }
+
+function countVoice(num) {
+  let audio = new Audio("./../audio/count.mp3");
+  audio.currentTime = num - 1;
+  audio.play();
+  setTimeout(() => {
+    audio.pause();
+  }, 900)
+}
+
+function countdown(numSeconds) {
+  let countDown = document.getElementById("count_down")
+  let count = numSeconds;
+  countDown.textContent = count;
+  countVoice(count);
+  let idInterval = setInterval(() => {
+    count--;
+    if (count === 0) {
+      clearInterval(idInterval);
+      countDown.textContent = "GO";
+      let letsGo = new Audio("./../audio/letsGo.mp3");
+      letsGo.volume = 0.5;
+      letsGo.play();
+      setTimeout(() => {
+        countDown.remove();
+        startGame = true;
+        return;
+      }, 1000);
+    } else {
+      countDown.textContent = count;
+      countVoice(count);
+    };
+  }, 1000);
+};
+
+function gameOver() {
+  setTimeout(() => {
+    let gameOver = document.createElement("div");
+    gameOver.classList.add("gameOver");
+    let audio = new Audio('./../audio/gameOver.mp3');
+    audio.play();
+    document.body.append(gameOver);
+    showStatistic();
+    return true;
+  }, 3000);
+}
+
+function showStatistic() {
+  setTimeout(() => {
+    document.getElementsByClassName("gameOver")[0].remove();
+    statistic.id = "statisticEndGame";
+    statisticEndGame.style.display = "block";
+
+    document.getElementById("timeDown").remove();
+
+    if (localStorage.getItem("clickerStage1")) {
+      let lastRes = localStorage.getItem("clickerStage1").split("|");
+      let lastPoint = document.createElement("div")
+      lastPoint.textContent = `Last Points: ${lastRes[0]}`;
+      statisticEndGame.append(lastPoint);
+      let lastShots = document.createElement("div")
+      lastShots.textContent = `Last Shots: ${lastRes[1]}`;
+      statisticEndGame.append(lastShots);
+    }
+
+    let menuEndGame = document.createElement("div");
+    menuEndGame.id = "buttons";
+    menuEndGame.innerHTML = `
+    <button>Play again</button>
+    <button>Back to main menu</button>`
+    document.getElementById("wrapper").append(menuEndGame);
+    menuEndGameEffects();
+
+    let resTolocalStorage = `${points}|${shots}`;
+    localStorage.setItem("clickerStage3", resTolocalStorage);
+  }, 5000);
+}
+
+function menuEndGameEffects() {
+  let buttonsEndGame = document.getElementById("buttons").children;
+  let audiosPlay = [];
+  let click = new Audio("./../audio/freesound_crunchpixstudio-click-2-384920.mp3")
+
+  for (let i = 0; i < buttonsEndGame.length; i++) {
+    audiosPlay.push(new Audio("./../audio/47313572-ui-sounds-pack-3-16-359726.mp3"));
+    buttonsEndGame[i].addEventListener("mouseover", () => {
+      audiosPlay[i].play();
+    });
+    buttonsEndGame[i].addEventListener("click", () => {
+      click.play();
+    });
+  }
+
+  document.getElementById("buttons").children[0].addEventListener("click", () => {
+    setTimeout(() => {
+      window.location.href = './stage_3.html'
+    }, 500)
+  })
+
+  document.getElementById("buttons").children[1].addEventListener("click", () => {
+    setTimeout(() => {
+      window.location.href = '../index.html'
+    }, 500)
+  })
+
+}

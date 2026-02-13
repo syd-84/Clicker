@@ -34,6 +34,12 @@ btnsTag[0].addEventListener("click", () => {
   }, 500)
 });
 
+btnsTag[2].addEventListener("click", () => {
+  setTimeout(() => {
+    window.location.href = './stage3/stage_3.html'
+  }, 500)
+});
+
 document.addEventListener("keydown", function (e) {
   if (e.key === "Escape") {
     this.body.style.display = "none";
