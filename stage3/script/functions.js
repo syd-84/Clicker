@@ -117,8 +117,8 @@ function showStatistic() {
 
     document.getElementById("timeDown").remove();
 
-    if (localStorage.getItem("clickerStage1")) {
-      let lastRes = localStorage.getItem("clickerStage1").split("|");
+    if (localStorage.getItem("clickerStage3")) {
+      let lastRes = localStorage.getItem("clickerStage3").split("|");
       let lastPoint = document.createElement("div")
       lastPoint.textContent = `Last Points: ${lastRes[0]}`;
       statisticEndGame.append(lastPoint);
