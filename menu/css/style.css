@@ -1,0 +1,45 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.styles {
+  transition: 5s;
+  background-image: url("../../images/14-22-36-485_512.webp");
+  font-family: fantasy;
+  height: 200px;
+  width: 400px;
+}
+
+#btns {
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+button {
+  border-radius: 25px;
+  font-size: 20px;
+  margin: 5px;
+  width: 50%;
+}
+
+button:hover {
+  background-color: rgb(11, 34, 82);
+  color: white;
+}
+
+.welcome {
+  color: white;
+  font-family: fantasy;
+  cursor: pointer;
+}
