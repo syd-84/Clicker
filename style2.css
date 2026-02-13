@@ -3,7 +3,41 @@ body {
   overflow: hidden;
   color: white;
   font-family: sans-serif;
-  background-color: rgb(73, 73, 77);
+  background-image: url("images/158284.jpg");
+  display: flex;
+  justify-content: center;
+}
+a {
+  list-style: none;
+  text-decoration: none;
+  color: purple;
+}
+
+.results {
+  display: none;
+  z-index: 9999;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 300px;
+  height: auto;
+  padding: 30px;
+  border: 2px solid white;
+  border-radius: 25px;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  font-family: fantasy;
+}
+a:hover {
+  transition: 1s ease;
+  color: white;
+  font-size: 45px;
 }
 
 #game-container {
