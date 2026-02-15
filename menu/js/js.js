@@ -34,14 +34,20 @@ btnsTag[0].addEventListener("click", () => {
   }, 500)
 });
 
+btnsTag[1].addEventListener("click", () => {
+  setTimeout(() => {
+    // window.location.href = './stage2/stage_2.html'
+  }, 500)
+});
+
 btnsTag[2].addEventListener("click", () => {
   setTimeout(() => {
     window.location.href = './stage3/stage_3.html'
   }, 500)
 });
 
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    this.body.style.display = "none";
-  }
+btnsTag[3].addEventListener("click", function () {
+  setTimeout(() => {
+    document.body.innerHTML = "";
+  }, 500)
 });
