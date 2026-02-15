@@ -19,6 +19,8 @@ document.body.addEventListener("click", (e) => {
     let y2 = e.clientY;
     let idTarget = e.target.id;
 
+    !plane.canShoot ? shots = 0 : shots++;
+
     if (plane.canShoot) {
       let laser = new laserRay(x1, y1, x2, y2);
       laser.drawLaserRay();
@@ -44,7 +46,6 @@ document.body.addEventListener("click", (e) => {
         delete rockets[idTarget];
       }
     }
-    shots++;
     let accuracy = points / shots * 100;
     document.getElementById("points").textContent = `Hits: ${points}`;
     document.getElementById("shots").textContent = `Shots: ${shots}`;

@@ -31,8 +31,9 @@ document.body.addEventListener("click", (e) => {
       delete rockets[idTarget];
     }
   }
-  shots++;
-  let accuracy = points / shots * 100;
+
+  !canShot ? shots = 0 : shots++;;
+  let accuracy = points / shots * 100 || 0;
   document.getElementById("points").textContent = `Hits: ${points}`;
   document.getElementById("shots").textContent = `Shots: ${shots}`;
   document.getElementById("accuracy").textContent = `Hit percentage: ${accuracy.toFixed(0)}%`;
