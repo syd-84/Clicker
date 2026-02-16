@@ -48,6 +48,6 @@ btnsTag[2].addEventListener("click", () => {
 
 btnsTag[3].addEventListener("click", function () {
   setTimeout(() => {
-    document.body.innerHTML = "";
+    document.body.innerHTML = `<div class="welcome" style="cursor: default;">GOODBYE</div>`;
   }, 500)
 });
