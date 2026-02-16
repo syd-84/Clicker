@@ -3,15 +3,12 @@ const healthBar = document.getElementById("health-bar");
 const scoreElement = document.getElementById("score");
 const audio = new Audio("audio/background_music.opus");
 
-document.addEventListener(
-  "keydown",
-  () => {
-    if (audio.paused) {
-      audio.play().catch((e) => console.log(""));
-    }
-  },
-  { once: true },
-);
+const sun = document.getElementById("sun");
+document.addEventListener("keydown", () => {
+  if (audio.paused) {
+    audio.play().catch((e) => console.log(""));
+  }
+});
 
 const results = document.getElementById("results");
 let playerX = 100;
@@ -63,12 +60,12 @@ function spawnRocket() {
 
     if (ry < playerY) ry += 2;
     if (ry > playerY) ry -= 2;
-    rx -= 5;
+    rx -= 10;
 
     rocket.style.left = rx + "px";
     rocket.style.top = ry + "px";
 
-    if (Math.abs(rx - playerX) < 40 && Math.abs(ry - playerY) < 30) {
+    if (Math.abs(rx - playerX) < 40 && Math.abs(ry - playerY) < 70) {
       const sounds = new Audio("audio/crash.wav");
       sounds.play();
       health -= 1;
@@ -90,11 +87,19 @@ function spawnRocket() {
         rocket.remove();
         return;
       }
+      if (health >= 50) {
+        sun.style.display = "flex";
+
+        document.body.classList.add("bg");
+      } else if (health <= 20) {
+        document.body.classList.add("secbg");
+        sun.style.display = "none";
+      }
     }
 
-    if (rx < -50) {
+    if (rx <= 10) {
       rocket.remove();
-      score += 10;
+      score += 1;
       scoreElement.innerText = "Очки: " + score;
     } else {
       requestAnimationFrame(animateRocket);

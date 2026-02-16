@@ -7,6 +7,52 @@ body {
   display: flex;
   justify-content: center;
 }
+.bg {
+  transition: 3s ease;
+  background-image: url("images/mysterious-planet-in-dark-space-3a-1920x1200.jpg");
+  background-size: cover;
+}
+.secbg {
+  transition: 3s ease;
+  background-image: url("images/moon-in-the-waxing-crescent-we-1912x1076.jpg");
+  background-size: cover;
+}
+.sun {
+  top: 250px;
+  z-index: 100;
+  position: absolute;
+  left: -20%;
+  width: 250px;
+  height: 250px;
+  border-radius: 100%;
+  background-image: url("gifs/18-11-29-438_512.webp");
+  background-size: cover;
+  animation: sun 15s ease-in-out infinite alternate;
+  display: none;
+}
+@keyframes sun {
+  0% {
+    left: 0%;
+  }
+  10% {
+    left: 15%;
+    top: 15%;
+  }
+  40% {
+    left: 15%;
+    bottom: 45%;
+  }
+
+  60% {
+    left: 80%;
+    bottom: 45%;
+  }
+  100% {
+    left: 100%;
+    bottom: 50%;
+  }
+}
+
 a {
   list-style: none;
   text-decoration: none;
@@ -48,8 +94,8 @@ a:hover {
 
 #player {
   position: absolute;
-  width: 200px;
-  height: 250px;
+  width: 100px;
+  height: 100px;
   z-index: 10;
 
   background-image: url("gifs/render_720_720_0_340_0.webp");
