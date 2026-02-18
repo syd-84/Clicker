@@ -44,7 +44,7 @@ class Rocket {
 
   clash() {
     if (distance(this.xc, this.yc, this.target.xc, this.target.yc) < ((this.target.width + this.width) / 2)) {
-      destroyedEvent("clash", this.xc, this.yc)
+      destroyedEvent("clash", this.xc, this.yc);
       this.target.hp -= 10;
       this.rocketDiv.remove();
       delete rockets[this.rocketDiv.id];

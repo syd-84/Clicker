@@ -25,6 +25,7 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
 a {
   text-decoration: none;
   list-style: none;
@@ -46,5 +47,6 @@ button:hover {
 .welcome {
   color: white;
   font-family: fantasy;
+  font-size: 30px;
   cursor: pointer;
 }

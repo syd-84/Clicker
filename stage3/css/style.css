@@ -139,6 +139,7 @@ body {
 #statisticEndGame div {
   width: 100%;
   padding: 10px;
+  box-sizing: border-box;
   background-color: #131a14a9;
   border-radius: 10px;
   user-select: none;
@@ -213,8 +214,15 @@ body {
 }
 
 #buttons button {
+  width: 100%;
   padding: 10px;
+  margin-left: 10px;
+  box-sizing: border-box;
   border-radius: 20px;
   font-size: 20px;
   cursor: pointer;
+}
+
+button {
+  z-index: 11;
 }

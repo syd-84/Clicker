@@ -108,6 +108,7 @@ a:hover {
 
   background-image: url("../gifs/render_720_720_0_340_0.webp");
   background-size: contain;
+  background-position: 50%;
   background-repeat: no-repeat;
   background-color: transparent;
   transform: rotate(90deg);

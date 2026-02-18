@@ -2,6 +2,7 @@ const player = document.getElementById("player");
 const healthBar = document.getElementById("health-bar");
 const scoreElement = document.getElementById("score");
 const audio = new Audio("./../audio/background_music.opus");
+audio.volume = 0.5;
 
 const sun = document.getElementById("sun");
 document.addEventListener("keydown", () => {
@@ -28,16 +29,16 @@ soud.forEach((soud) => {
   });
 });
 
-const keys = { w: false, s: false, a: false, d: false };
-document.addEventListener("keydown", (e) => (keys[e.key.toLowerCase()] = true));
-document.addEventListener("keyup", (e) => (keys[e.key.toLowerCase()] = false));
+const keys = { KeyW: false, KeyS: false, KeyA: false, KeyD: false };
+document.addEventListener("keydown", (e) => (keys[e.code] = true));
+document.addEventListener("keyup", (e) => (keys[e.code] = false));
 
 function move() {
   if (gameOver) return;
-  if (keys.w && playerY > 0) playerY -= 7;
-  if (keys.s && playerY < window.innerHeight - 50) playerY += 7;
-  if (keys.a && playerX > 0) playerX -= 7;
-  if (keys.d && playerX < window.innerWidth - 60) playerX += 7;
+  if (keys.KeyW && playerY > 0) playerY -= 7;
+  if (keys.KeyS && playerY < window.innerHeight - 50) playerY += 7;
+  if (keys.KeyA && playerX > 0) playerX -= 7;
+  if (keys.KeyD && playerX < window.innerWidth - 60) playerX += 7;
 
   player.style.left = playerX + "px";
   player.style.top = playerY + "px";
@@ -59,16 +60,16 @@ function spawnRocket() {
       return;
     }
 
-    if (ry < playerY) ry += 2;
-    if (ry > playerY) ry -= 2;
+    if (ry < playerY + player.clientHeight / 2) ry += 2;
+    if (ry > playerY + player.clientHeight / 2) ry -= 2;
     rx -= 10;
 
     rocket.style.left = rx + "px";
     rocket.style.top = ry + "px";
 
-    if (Math.abs(rx - playerX) < 40 && Math.abs(ry - playerY) < 70) {
+    if (Math.abs(rx - playerX) < 40 && Math.abs(ry - playerY - player.clientHeight / 2) < 70) {
       const sounds = new Audio("./../audio/crash.wav");
-      sounds.volume = 0.3;
+      sounds.volume = 0.2;
       sounds.play();
       health -= 1;
       healthBar.style.width = health + "%";

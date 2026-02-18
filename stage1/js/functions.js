@@ -46,7 +46,7 @@ document.body.addEventListener("click", (e) => {
         delete rockets[idTarget];
       }
     }
-    let accuracy = points / shots * 100;
+    let accuracy = points / shots * 100 || 0;
     document.getElementById("points").textContent = `Hits: ${points}`;
     document.getElementById("shots").textContent = `Shots: ${shots}`;
     document.getElementById("accuracy").textContent = `Hit percentage: ${accuracy.toFixed(0)}%`;
@@ -69,6 +69,9 @@ document.body.addEventListener("mousemove", (e) => {
 function destroyedEvent(event, x, y) {
   let element = document.createElement(event);
   element.classList.add(event);
+  let size = 0.1 * Math.min(coordinateSystem.width, coordinateSystem.height)
+  element.style.width = size + "px";
+  element.style.height = size + "px";
   document.body.append(element);
   element.style.left = (x - element.clientWidth / 2) + "px";
   element.style.top = (y - element.clientHeight / 2) + "px";
@@ -143,7 +146,9 @@ function showStatistic() {
     let menuEndGame = document.createElement("div");
     menuEndGame.id = "buttons";
     menuEndGame.innerHTML = `
-    <button>Play again</button>
+    <button>STAGE 1</button>
+    <button>STAGE 2</button>
+    <button>STAGE 3</button>
     <button>Back to main menu</button>`
     document.body.append(menuEndGame);
     menuEndGameEffects();
@@ -170,15 +175,24 @@ function menuEndGameEffects() {
 
   document.getElementById("buttons").children[0].addEventListener("click", () => {
     setTimeout(() => {
-      window.location.href = './stage_1.html'
+      window.location.href = '../stage1/stage_1.html'
     }, 500)
   })
 
   document.getElementById("buttons").children[1].addEventListener("click", () => {
     setTimeout(() => {
-      window.location.href = '../index.html'
+      window.location.href = '../stage2/stage.index.html'
     }, 500)
   })
 
+  document.getElementById("buttons").children[2].addEventListener("click", () => {
+    setTimeout(() => {
+      window.location.href = '../stage3/stage_3.html'
+    }, 500)
+  })
+  document.getElementById("buttons").children[3].addEventListener("click", () => {
+    setTimeout(() => {
+      window.location.href = '../index.html'
+    }, 500)
+  })
 }
-

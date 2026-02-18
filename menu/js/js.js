@@ -11,7 +11,7 @@ document.getElementById("welcome").addEventListener(
   function (e) {
     myAudio.play();
     document.body.classList.add("styles");
-    e.target.textContent = "WELCOME TO OUR NEW GAME";
+    e.target.textContent = "WELCOME TO THE GAME";
     e.target.style.cursor = "auto";
     btns.style.display = "";
   },
@@ -36,7 +36,7 @@ btnsTag[0].addEventListener("click", () => {
 
 btnsTag[1].addEventListener("click", () => {
   setTimeout(() => {
-    // window.location.href = './stage2/stage_2.html'
+    window.location.href = './stage2/stage.index.html'
   }, 500)
 });
 
