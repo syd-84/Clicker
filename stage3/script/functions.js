@@ -9,48 +9,34 @@ function getNumBetween(minNum, maxNum) {
 }
 
 document.body.addEventListener("click", (e) => {
-  if (plane !== undefined) {
-    if (plane.destroyed) {
-      return;
-    }
-    let x1 = plane.xc;
-    let y1 = plane.yc;
-    let x2 = e.clientX;
-    let y2 = e.clientY;
+  if (timeDown === 0) {
+    return;
+  }
+
+  if (e.target.classList.contains("rocket")) {
     let idTarget = e.target.id;
 
-    !plane.canShoot ? shots = 0 : shots++;
-
-    if (plane.canShoot) {
-      let laser = new laserRay(x1, y1, x2, y2);
-      laser.drawLaserRay();
-      let audio = new Audio('./../audio/laser.wav');
-      audio.volume = 0.4;
+    let targetXc = rockets[idTarget].xc;
+    let targetYc = rockets[idTarget].yc;
+    let x1 = e.clientX;
+    let y1 = e.clientY;
+    if (distance(targetXc, targetYc, x1, y1) <= rockets[idTarget].width / 2) {
+      points++;
+      e.target.classList.remove("rocket");
+      e.target.remove();
+      destroyedEvent("bang", x1, y1);
+      let audio = new Audio('./../audio/bang.wav');
+      audio.volume = 0.5;
       audio.play();
-      setTimeout(() => {
-        document.getElementById("ray").remove();
-      }, 50);
+      delete rockets[idTarget];
     }
-
-    if (e.target.classList.contains("rocket")) {
-      let targetXc = rockets[idTarget].xc;
-      let targetYc = rockets[idTarget].yc;
-      if (distance(targetXc, targetYc, x2, y2) <= rockets[idTarget].width / 2) {
-        points++;
-        e.target.classList.remove("rocket");
-        e.target.remove();
-        destroyedEvent("bang", x2, y2);
-        let audio = new Audio('./../audio/bang.wav');
-        audio.volume = 0.5;
-        audio.play();
-        delete rockets[idTarget];
-      }
-    }
-    let accuracy = points / shots * 100;
-    document.getElementById("points").textContent = `Hits: ${points}`;
-    document.getElementById("shots").textContent = `Shots: ${shots}`;
-    document.getElementById("accuracy").textContent = `Hit percentage: ${accuracy.toFixed(0)}%`;
   }
+
+  !canShot ? shots = 0 : shots++;;
+  let accuracy = points / shots * 100 || 0;
+  document.getElementById("points").textContent = `Hits: ${points}`;
+  document.getElementById("shots").textContent = `Shots: ${shots}`;
+  document.getElementById("accuracy").textContent = `Hit percentage: ${accuracy.toFixed(0)}%`;
 });
 
 document.body.addEventListener("mousemove", (e) => {
@@ -130,8 +116,10 @@ function showStatistic() {
     statistic.id = "statisticEndGame";
     statisticEndGame.style.display = "block";
 
-    if (localStorage.getItem("clickerStage1")) {
-      let lastRes = localStorage.getItem("clickerStage1").split("|");
+    document.getElementById("timeDown").remove();
+
+    if (localStorage.getItem("clickerStage3")) {
+      let lastRes = localStorage.getItem("clickerStage3").split("|");
       let lastPoint = document.createElement("div")
       lastPoint.textContent = `Last Points: ${lastRes[0]}`;
       statisticEndGame.append(lastPoint);
@@ -145,11 +133,11 @@ function showStatistic() {
     menuEndGame.innerHTML = `
     <button>Play again</button>
     <button>Back to main menu</button>`
-    document.body.append(menuEndGame);
+    document.getElementById("wrapper").append(menuEndGame);
     menuEndGameEffects();
 
     let resTolocalStorage = `${points}|${shots}`;
-    localStorage.setItem("clickerStage1", resTolocalStorage);
+    localStorage.setItem("clickerStage3", resTolocalStorage);
   }, 5000);
 }
 
@@ -170,7 +158,7 @@ function menuEndGameEffects() {
 
   document.getElementById("buttons").children[0].addEventListener("click", () => {
     setTimeout(() => {
-      window.location.href = './stage_1.html'
+      window.location.href = './stage_3.html'
     }, 500)
   })
 
@@ -181,4 +169,3 @@ function menuEndGameEffects() {
   })
 
 }
-
