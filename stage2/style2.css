@@ -3,20 +3,23 @@ body {
   overflow: hidden;
   color: white;
   font-family: sans-serif;
-  background-image: url("images/158284.jpg");
+  background-image: url("../images/158284.jpg");
   display: flex;
   justify-content: center;
 }
+
 .bg {
   transition: 3s ease;
-  background-image: url("images/mysterious-planet-in-dark-space-3a-1920x1200.jpg");
+  background-image: url("../images/mysterious-planet-in-dark-space-3a-1920x1200.jpg");
   background-size: cover;
 }
+
 .secbg {
   transition: 3s ease;
-  background-image: url("images/moon-in-the-waxing-crescent-we-1912x1076.jpg");
+  background-image: url("../images/moon-in-the-waxing-crescent-we-1912x1076.jpg");
   background-size: cover;
 }
+
 .sun {
   top: 250px;
   z-index: 100;
@@ -25,19 +28,22 @@ body {
   width: 250px;
   height: 250px;
   border-radius: 100%;
-  background-image: url("gifs/18-11-29-438_512.webp");
+  background-image: url("../gifs/18-11-29-438_512.webp");
   background-size: cover;
   animation: sun 15s ease-in-out infinite alternate;
   display: none;
 }
+
 @keyframes sun {
   0% {
     left: 0%;
   }
+
   10% {
     left: 15%;
     top: 15%;
   }
+
   40% {
     left: 15%;
     bottom: 45%;
@@ -47,6 +53,7 @@ body {
     left: 80%;
     bottom: 45%;
   }
+
   100% {
     left: 100%;
     bottom: 50%;
@@ -80,6 +87,7 @@ a {
   color: white;
   font-family: fantasy;
 }
+
 a:hover {
   transition: 1s ease;
   color: white;
@@ -98,12 +106,13 @@ a:hover {
   height: 100px;
   z-index: 10;
 
-  background-image: url("gifs/render_720_720_0_340_0.webp");
+  background-image: url("../gifs/render_720_720_0_340_0.webp");
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
   transform: rotate(90deg);
 }
+
 #ui {
   position: absolute;
   top: 20px;

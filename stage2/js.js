@@ -1,7 +1,7 @@
 const player = document.getElementById("player");
 const healthBar = document.getElementById("health-bar");
 const scoreElement = document.getElementById("score");
-const audio = new Audio("audio/background_music.opus");
+const audio = new Audio("./../audio/background_music.opus");
 
 const sun = document.getElementById("sun");
 document.addEventListener("keydown", () => {
@@ -21,8 +21,9 @@ const soud = document.querySelectorAll("h1");
 soud.forEach((soud) => {
   soud.addEventListener("mouseover", function () {
     const audio1 = new Audio(
-      "audio/freesound_crunchpixstudio-click-2-384920.mp3",
+      "./../audio/freesound_crunchpixstudio-click-2-384920.mp3",
     );
+    audio1.volume = 0.8;
     audio1.play();
   });
 });
@@ -66,7 +67,8 @@ function spawnRocket() {
     rocket.style.top = ry + "px";
 
     if (Math.abs(rx - playerX) < 40 && Math.abs(ry - playerY) < 70) {
-      const sounds = new Audio("audio/crash.wav");
+      const sounds = new Audio("./../audio/crash.wav");
+      sounds.volume = 0.3;
       sounds.play();
       health -= 1;
       healthBar.style.width = health + "%";
@@ -77,7 +79,7 @@ function spawnRocket() {
 
         audio.pause();
 
-        const gameOver1 = new Audio("audio/gameOver.mp3");
+        const gameOver1 = new Audio("./../audio/gameOver.mp3");
         gameOver1.play();
 
         results.style.display = "flex";
