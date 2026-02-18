@@ -63,7 +63,8 @@ function makeRockets(time) {
   let xc;
   let yc;
   let count = 0;
-  let velocity = 5;
+  let velocity = Math.min(coordinateSystem.width, coordinateSystem.height) / 120;
+  let dVelocity = Math.min(coordinateSystem.width, coordinateSystem.height) / 600;
 
   let timerMakeRockets = setInterval(() => {
     if (timeDown === 0) {
@@ -71,7 +72,7 @@ function makeRockets(time) {
       return;
     }
     if (count % 5 === 0) {
-      velocity += 1;
+      velocity += dVelocity;
     }
     xc = getNumBetween(50, coordinateSystem.width - 50);
     yc = getNumBetween(50, coordinateSystem.height - 50);
