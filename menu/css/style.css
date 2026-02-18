@@ -25,6 +25,11 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+a {
+  text-decoration: none;
+  list-style: none;
+  color: black;
+}
 
 button {
   border-radius: 25px;
