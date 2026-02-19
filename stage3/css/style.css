@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  background-image: url(../images/Sky-Stars-Pattern.jpg);
+  background-image: url(../../images/Sky-Stars-Pattern.jpg);
   background-size: contain;
   cursor: url(../images/cursor1.png) 15 15, default;
 }
@@ -19,7 +19,7 @@ body {
 #cockpit {
   width: 100%;
   height: 100%;
-  background-image: url(../images/cockpit.png);
+  background-image: url(../../images/cockpit.png);
   background-size: 100% 100%;
   z-index: 5;
   position: absolute;
@@ -30,7 +30,7 @@ body {
 #gun_right {
   width: 25%;
   height: 30%;
-  background-image: url(../images/gun.png);
+  background-image: url(../../images/gun.png);
   background-size: 100% 100%;
   position: fixed;
   bottom: 0;

@@ -19,7 +19,7 @@ class LaserRay {
     ray.style.width = this.length + "px";
     ray.style.transform = `rotate(${this.angle}rad) translateX(${this.length / 2 * (1 - Math.cos(this.angle))}px) translateY(${this.length / 2 * Math.sin(this.angle)}px)`;
     document.body.append(ray);
-    let audio = new Audio("./audio/laser.wav");
+    let audio = new Audio("./../audio/laser.wav");
     audio.play();
     setTimeout(() => {
       ray.remove();
